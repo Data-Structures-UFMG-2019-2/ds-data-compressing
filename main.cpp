@@ -4,15 +4,12 @@
 #include "./include/index.hpp"
 
 int main(){
-    Index* index_a = new Index((char*) "a", 12);
-    Index* index_b = new Index((char*) "b", 13);
-    Index* index_c = new Index((char*) "c", 14);
-    Hash<Index> hash = Hash<Index>();
-    hash.add("abc", index_a);
-    hash.add("abcd", index_b);
-    hash.add("acb", index_c);
-    std::cout << hash["abc"]->get_word() << std::endl;
-    std::cout << hash["abcd"]->get_word() << std::endl;
-    std::cout << hash["acb"]->get_word() << std::endl;
-    hash.clear();
+    Hash<Index> indexes = Hash<Index>();
+    indexes["abc"]->increment_ocurrency();
+    indexes["abc"]->increment_ocurrency();
+    indexes["abcd"]->increment_ocurrency();
+    std::cout << indexes["abc"]->get_ocurrency() << std::endl;
+    std::cout << indexes["abcd"]->get_ocurrency() << std::endl;
+    std::cout << indexes["acb"]->get_ocurrency() << std::endl;
+    indexes.clear();
 }

@@ -8,7 +8,7 @@ class Index{
         char* code;
 
     public:
-        Index(char* word, int ocurrency);
+        Index(char* word);
         Index();
         ~Index();
         char* get_word();

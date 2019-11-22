@@ -1,12 +1,14 @@
+#include<cstdlib>
+
 #include"../include/index.hpp"
 
-Index::Index(char* word, int ocurrency){
+Index::Index(char* word){
     this->word = word;
-    this->ocurrency = ocurrency;
-    this->code = code;
+    this->ocurrency = 1;
 }
 
 Index::Index(){
+    this->ocurrency = 1;
 }
 
 Index::~Index(){

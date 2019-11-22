@@ -27,7 +27,7 @@ Hash<T>::Hash(int max_size){
 
 template<class T>
 Hash<T>::~Hash(){
-
+    free(this->lists);
 }
 
 template<class T>
@@ -67,7 +67,7 @@ template<class T>
 T* Hash<T>::operator[](const char* key){
     T* value = this->get(key);
     if(value == nullptr){
-        value = new T;
+        value = new T((char*) key);
         this->add(key, value);
     }
     return value;
@@ -78,12 +78,13 @@ void Hash<T>::clear(){
     for (int i = 0; i < this->max_size; i++){
         if(this->lists[i]->length() > MAX_STACK_SIZE){
             this->lists[i]->clear(ITERATIVE);
+            delete this->lists[i];
         }
         else{
             this->lists[i]->clear(RECURSIVE);
+            delete this->lists[i];
         }
     }
-    
 }
 
 template class Hash<Index>;
