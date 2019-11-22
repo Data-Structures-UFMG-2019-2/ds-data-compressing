@@ -1,4 +1,5 @@
 #include "../include/cell.hpp"
+#include "../include/index.hpp"
 #include "../include/hash_pair.hpp"
 
 template<class T>
@@ -54,4 +55,4 @@ void Cell<T>::cascade_clear(int direction){
     delete this->object;
 }
 
-template class Cell<HashPair<int>>;
+template class Cell<HashPair<Index>>;

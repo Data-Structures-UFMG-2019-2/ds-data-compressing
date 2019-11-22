@@ -4,6 +4,7 @@
 
 #include"../include/linked_list.hpp"
 #include"../include/hash_pair.hpp"
+#include "../include/index.hpp"
 
 template<class T>
 LinkedList<T>::LinkedList(){
@@ -223,4 +224,4 @@ void LinkedList<T>::clear(int strategy){
     }
 }
 
-template class LinkedList<HashPair<int>>;
+template class LinkedList<HashPair<Index>>;

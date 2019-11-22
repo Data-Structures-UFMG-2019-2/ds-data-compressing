@@ -1,4 +1,5 @@
 #include"../include/hash_pair.hpp"
+#include "../include/index.hpp"
 
 template<class T>
 HashPair<T>::HashPair(const char* key){
@@ -25,4 +26,4 @@ bool HashPair<T>::match(char const* key){
     return true;
 }
 
-template class HashPair<int>;
+template class HashPair<Index>;

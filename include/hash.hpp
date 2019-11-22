@@ -1,6 +1,8 @@
 #ifndef HASH_H
 #define HASH_H
 
+#define MAX_STACK_SIZE 100000
+
 #include"./linked_list.hpp"
 #include"./hash_pair.hpp"
 
@@ -17,6 +19,7 @@ class Hash{
         ~Hash();
         void add(const char* key, T* value);
         T* get(const char* key);
+        void clear();
 };
 
 #endif

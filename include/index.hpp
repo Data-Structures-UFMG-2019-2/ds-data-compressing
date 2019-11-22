@@ -4,11 +4,17 @@
 class Index{
     private:
         char* word;
-        int code;
+        int ocurrency;
+        char* code;
 
     public:
-        Index(char* word, int code);
+        Index(char* word, int ocurrency);
         ~Index();
+        char* get_word();
+        char* get_code();
+        int get_ocurrency();
+        void set_code(char* code);
+        void increment_ocurrency();
 };
 
 #endif

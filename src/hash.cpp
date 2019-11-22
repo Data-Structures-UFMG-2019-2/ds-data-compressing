@@ -3,6 +3,7 @@
 #include"../include/hash.hpp"
 #include"../include/linked_list.hpp"
 #include"../include/cell.hpp"
+#include "../include/index.hpp"
 #include"../include/hash_pair.hpp"
 
 template<class T>
@@ -40,6 +41,7 @@ void Hash<T>::add(const char* key, T* value){
     }
     list = this->lists[numeric_key % max_size];
     list->add(pair);
+    this->size++;
 }
 
 template<class T>
@@ -61,4 +63,17 @@ T* Hash<T>::get(const char* key){
     return nullptr;
 }
 
-template class Hash<int>;
+template<class T>
+void Hash<T>::clear(){
+    for (int i = 0; i < this->max_size; i++){
+        if(this->lists[i]->length() > MAX_STACK_SIZE){
+            this->lists[i]->clear(ITERATIVE);
+        }
+        else{
+            this->lists[i]->clear(RECURSIVE);
+        }
+    }
+    
+}
+
+template class Hash<Index>;
