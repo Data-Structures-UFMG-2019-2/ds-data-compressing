@@ -6,11 +6,32 @@ Index::Index(char* word, int ocurrency){
     this->code = code;
 }
 
+Index::Index(){
+}
+
 Index::~Index(){
 }
 
-char* Index::get_word(){ return this->word; }
-char* Index::get_code(){ return this->code; }
-int Index::get_ocurrency(){ return this->ocurrency; }
-void Index::set_code(char* code){ this->code = code; }
-void Index::increment_ocurrency(){ this->ocurrency++; }
+char* Index::get_word(){
+    return this->word;
+}
+
+char* Index::get_code(){
+    return this->code;
+}
+
+int Index::get_ocurrency(){
+    return this->ocurrency;
+}
+
+void Index::set_code(char* code){
+    this->code = code;
+}
+
+void Index::increment_ocurrency(){
+    this->ocurrency++;
+}
+
+void Index::operator++(){
+    this->ocurrency++;
+}

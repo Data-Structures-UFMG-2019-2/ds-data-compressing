@@ -19,6 +19,7 @@ class Hash{
         ~Hash();
         void add(const char* key, T* value);
         T* get(const char* key);
+        T* operator[](const char* key);
         void clear();
 };
 

@@ -64,6 +64,16 @@ T* Hash<T>::get(const char* key){
 }
 
 template<class T>
+T* Hash<T>::operator[](const char* key){
+    T* value = this->get(key);
+    if(value == nullptr){
+        value = new T;
+        this->add(key, value);
+    }
+    return value;
+}
+
+template<class T>
 void Hash<T>::clear(){
     for (int i = 0; i < this->max_size; i++){
         if(this->lists[i]->length() > MAX_STACK_SIZE){
