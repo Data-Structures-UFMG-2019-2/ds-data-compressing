@@ -1,4 +1,5 @@
 #include<cstdlib>
+#include<cstring>
 
 #include"../include/hash.hpp"
 #include"../include/linked_list.hpp"
@@ -33,7 +34,8 @@ Hash<T>::~Hash(){
 template<class T>
 void Hash<T>::add(const char* key, T* value){
     int numeric_key = 0;
-    HashPair<T>* pair = new HashPair<T>(key, value);
+    char* key_copy = this->copy_key(key);
+    HashPair<T>* pair = new HashPair<T>(key_copy, value);
     LinkedList<HashPair<T>>* list;
 
     for(int i = 0; key[i] != '\0'; i++){
@@ -67,10 +69,22 @@ template<class T>
 T* Hash<T>::operator[](const char* key){
     T* value = this->get(key);
     if(value == nullptr){
-        value = new T((char*) key);
+        char* key_copy = this->copy_key(key);
+        value = new T((char*) key_copy);
         this->add(key, value);
     }
     return value;
+}
+
+template<class T>
+void Hash<T>::each(void (*callback)(T*)){
+    HashPair<T>* pair;
+    for (int i = 0; i < this->max_size; i++){
+        for(Cell<HashPair<T>>* it = lists[i]->begin(); it != nullptr; it = it->get_next()){
+            pair = it->get_object();
+            callback(pair->value);
+        }
+    }
 }
 
 template<class T>
@@ -85,6 +99,14 @@ void Hash<T>::clear(){
             delete this->lists[i];
         }
     }
+}
+
+template<class T>
+char* Hash<T>::copy_key(const char* key){
+    int key_size = strlen(key)+1;
+    char* key_copy = (char*) malloc(key_size*sizeof(char));
+    memcpy(key_copy, key, key_size);
+    return key_copy;
 }
 
 template class Hash<Index>;

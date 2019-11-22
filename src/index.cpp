@@ -4,11 +4,11 @@
 
 Index::Index(char* word){
     this->word = word;
-    this->ocurrency = 1;
+    this->ocurrency = 0;
 }
 
 Index::Index(){
-    this->ocurrency = 1;
+    this->ocurrency = 0;
 }
 
 Index::~Index(){

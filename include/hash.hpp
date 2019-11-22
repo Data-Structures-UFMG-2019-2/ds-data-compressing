@@ -12,6 +12,7 @@ class Hash{
         int max_size = 255;
         int size = 0;
         LinkedList<HashPair<T>>** lists;
+        char* copy_key(const char* key);
 
     public:
         Hash();
@@ -20,6 +21,7 @@ class Hash{
         void add(const char* key, T* value);
         T* get(const char* key);
         T* operator[](const char* key);
+        void each(void (*callback)(T*));
         void clear();
 };
 

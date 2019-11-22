@@ -25,7 +25,7 @@ clean:
 	rm -rf $(BUILD_PATH)/*
 
 run:
-	$(BUILD_PATH)/$(TARGET_NAME)
+	$(BUILD_PATH)/$(TARGET_NAME) < tests/part1/01.in
 
 mem:
 	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME)
