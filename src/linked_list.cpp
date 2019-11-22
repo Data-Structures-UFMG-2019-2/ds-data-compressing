@@ -7,25 +7,25 @@
 #include "../include/index.hpp"
 
 template<class T>
-LinkedList<T>::LinkedList(){
+List::LinkedList<T>::LinkedList(){
     this->size = 0;
     this->first = nullptr;
     this->last = nullptr;
 }
 
 template<class T>
-LinkedList<T>::~LinkedList(){
+List::LinkedList<T>::~LinkedList(){
 
 }
 
 template<class T>
-int LinkedList<T>::length(){
+int List::LinkedList<T>::length(){
     return this->size;
 }
 
 template<class T>
-void LinkedList<T>::add(T* object){
-    Cell<T>* cell = new Cell<T>(object);
+void List::LinkedList<T>::add(T* object){
+    List::Cell<T>* cell = new List::Cell<T>(object);
 
     if(this->size == 0){
         this->first = cell;
@@ -40,8 +40,8 @@ void LinkedList<T>::add(T* object){
 }
 
 template<class T>
-void LinkedList<T>::insert_after(Cell<T>* cell, T* object){
-    Cell<T>* new_cell = new Cell<T>(object);
+void List::LinkedList<T>::insert_after(List::Cell<T>* cell, T* object){
+    List::Cell<T>* new_cell = new List::Cell<T>(object);
     if(cell == nullptr){ // Insert at the beginning of the list when cell == NULL
         if(this->size == 0){
             this->first = cell;
@@ -68,8 +68,8 @@ void LinkedList<T>::insert_after(Cell<T>* cell, T* object){
 }
 
 template<class T>
-void LinkedList<T>::insert_before(Cell<T>* cell, T* object){
-    Cell<T>* new_cell = new Cell<T>(object);
+void List::LinkedList<T>::insert_before(List::Cell<T>* cell, T* object){
+    List::Cell<T>* new_cell = new List::Cell<T>(object);
     if(cell == nullptr){ // Insert at the end of the list when cell == NULL
         if(this->size == 0){
             this->first = cell;
@@ -96,8 +96,8 @@ void LinkedList<T>::insert_before(Cell<T>* cell, T* object){
 }
 
 template<class T>
-T* LinkedList<T>::get(int i){
-    Cell<T>* cell;
+T* List::LinkedList<T>::get(int i){
+    List::Cell<T>* cell;
     if(i >= this->size || i < -this->size){
         return nullptr;
     }
@@ -116,13 +116,13 @@ T* LinkedList<T>::get(int i){
 }
 
 template<class T>
-Cell<T>* LinkedList<T>::begin(){
+List::Cell<T>* List::LinkedList<T>::begin(){
     return this->first;
 }
 
 template<class T>
-Cell<T>* LinkedList<T>::get_cell(int i){ // negative values for i return cells from the back of the list
-    Cell<T>* cell;
+List::Cell<T>* List::LinkedList<T>::get_cell(int i){ // negative values for i return cells from the back of the list
+    List::Cell<T>* cell;
     if(i >= this->size || i < -this->size){
         return nullptr;
     }
@@ -141,9 +141,9 @@ Cell<T>* LinkedList<T>::get_cell(int i){ // negative values for i return cells f
 }
 
 template<class T>
-Cell<T>* LinkedList<T>::from_back(int i){ // return i-th cell (starting at the end)
+List::Cell<T>* List::LinkedList<T>::from_back(int i){ // return i-th cell (starting at the end)
     int cell_i = 0;
-    for (Cell<T>* cell = this->last; cell != nullptr; cell = cell->prev, cell_i++){
+    for (List::Cell<T>* cell = this->last; cell != nullptr; cell = cell->prev, cell_i++){
         if(cell_i == i){
             return cell;
         }
@@ -152,9 +152,9 @@ Cell<T>* LinkedList<T>::from_back(int i){ // return i-th cell (starting at the e
 }
 
 template<class T>
-Cell<T>* LinkedList<T>::from_front(int i){ // return i-th cell (starting at the beginning)
+List::Cell<T>* List::LinkedList<T>::from_front(int i){ // return i-th cell (starting at the beginning)
     int cell_i = 0;
-    for (Cell<T>* cell = this->first; cell != nullptr; cell = cell->next, cell_i++){
+    for (List::Cell<T>* cell = this->first; cell != nullptr; cell = cell->next, cell_i++){
         if(cell_i == i){
             return cell;
         }
@@ -163,8 +163,8 @@ Cell<T>* LinkedList<T>::from_front(int i){ // return i-th cell (starting at the 
 }
 
 template<class T>
-T* LinkedList<T>::remove(int i){ // negative values for i remove itens from the back of the list
-    Cell<T>* cell = nullptr;
+T* List::LinkedList<T>::remove(int i){ // negative values for i remove itens from the back of the list
+    List::Cell<T>* cell = nullptr;
     T* object = nullptr;
     if(i >= this->size || i < -this->size){
         return nullptr;
@@ -196,7 +196,7 @@ T* LinkedList<T>::remove(int i){ // negative values for i remove itens from the 
 }
 
 template<class T>
-void LinkedList<T>::clear(){
+void List::LinkedList<T>::clear(){
     if(this->size > 0){
         this->first->cascade_clear(FORWARD);
         delete this->first;
@@ -207,7 +207,7 @@ void LinkedList<T>::clear(){
 }
 
 template<class T>
-void LinkedList<T>::clear(int strategy){
+void List::LinkedList<T>::clear(int strategy){
     if(strategy == ITERATIVE){
         while(this->size > 0){
             delete this->remove(0);
@@ -224,4 +224,4 @@ void LinkedList<T>::clear(int strategy){
     }
 }
 
-template class LinkedList<HashPair<Index>>;
+template class List::LinkedList<HashPair<Index>>;

@@ -15,19 +15,14 @@ int main(){
     Hash<Index> indexes = Hash<Index>();
 
     scanf("%d", &n);
-    // indexes["TESTE"]->increment_ocurrency();
-    // indexes["TESTE"]->increment_ocurrency();
-    // indexes["ALO"]->increment_ocurrency();
-    // indexes["ALOHA"]->increment_ocurrency();
-    // indexes["TESTE"]->increment_ocurrency();
     for (int i = 0; i < n; ++i) {
         std::cin >> word;
         indexes[word]->increment_ocurrency();
     }
-    indexes.each(print_index);
+    // indexes.each(print_index);
     while (scanf(" %c %s", &op, word) != EOF) {
         if (op == 'q'){
-            
+            std::cout << indexes[word]->get_ocurrency() << std::endl;
         }
     }
     indexes.clear();

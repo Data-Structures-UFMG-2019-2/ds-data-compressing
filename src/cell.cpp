@@ -3,43 +3,43 @@
 #include "../include/hash_pair.hpp"
 
 template<class T>
-Cell<T>::Cell(T* object){
+List::Cell<T>::Cell(T* object){
     this->object = object;
     this->next = nullptr;
     this->prev = nullptr;
 }
 
 template<class T>
-Cell<T>::~Cell(){
+List::Cell<T>::~Cell(){
 }
 
 template<class T>
-Cell<T>* Cell<T>::operator++(){
+List::Cell<T>* List::Cell<T>::operator++(){
     return this->next;
 }
 
 template<class T>
-Cell<T>* Cell<T>::operator--(){
+List::Cell<T>* List::Cell<T>::operator--(){
     return this->prev;
 }
 
 template<class T>
-T* Cell<T>::get_object(){
+T* List::Cell<T>::get_object(){
     return this->object;
 }
 
 template<class T>
-Cell<T>* Cell<T>::get_next(){
+List::Cell<T>* List::Cell<T>::get_next(){
     return this->next;
 }
 
 template<class T>
-Cell<T>* Cell<T>::get_prev(){
+List::Cell<T>* List::Cell<T>::get_prev(){
     return this->prev;
 }
 
 template<class T>
-void Cell<T>::cascade_clear(int direction){
+void List::Cell<T>::cascade_clear(int direction){
     if(direction == FORWARD){
         if(this->next != nullptr){
             this->next->cascade_clear(FORWARD);
@@ -55,4 +55,4 @@ void Cell<T>::cascade_clear(int direction){
     delete this->object;
 }
 
-template class Cell<HashPair<Index>>;
+template class List::Cell<HashPair<Index>>;

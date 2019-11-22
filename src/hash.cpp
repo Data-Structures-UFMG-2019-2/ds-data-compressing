@@ -9,9 +9,9 @@
 
 template<class T>
 Hash<T>::Hash(){
-    this->lists = (LinkedList<HashPair<T>>**) malloc(this->max_size*sizeof(LinkedList<HashPair<T>>*));
+    this->lists = (List::LinkedList<HashPair<T>>**) malloc(this->max_size*sizeof(List::LinkedList<HashPair<T>>*));
     for(int i = 0; i < this->max_size; i++){
-        this->lists[i] = new LinkedList<HashPair<T>>();
+        this->lists[i] = new List::LinkedList<HashPair<T>>();
     }
     
 }
@@ -19,9 +19,9 @@ Hash<T>::Hash(){
 template<class T>
 Hash<T>::Hash(int max_size){
     this->max_size = max_size;
-    this->lists = (LinkedList<HashPair<T>>**) malloc(this->max_size*sizeof(LinkedList<HashPair<T>>*));
+    this->lists = (List::LinkedList<HashPair<T>>**) malloc(this->max_size*sizeof(List::LinkedList<HashPair<T>>*));
     for(int i = 0; i < this->max_size; i++){
-        this->lists[i] = new LinkedList<HashPair<T>>();
+        this->lists[i] = new List::LinkedList<HashPair<T>>();
     }
     
 }
@@ -36,7 +36,7 @@ void Hash<T>::add(const char* key, T* value){
     int numeric_key = 0;
     char* key_copy = this->copy_key(key);
     HashPair<T>* pair = new HashPair<T>(key_copy, value);
-    LinkedList<HashPair<T>>* list;
+    List::LinkedList<HashPair<T>>* list;
 
     for(int i = 0; key[i] != '\0'; i++){
         numeric_key += (int)key[i];
@@ -50,13 +50,13 @@ template<class T>
 T* Hash<T>::get(const char* key){
     int numeric_key = 0;
     HashPair<T>* pair;
-    LinkedList<HashPair<T>>* list;
+    List::LinkedList<HashPair<T>>* list;
     
     for(int i = 0; key[i] != '\0'; i++){
         numeric_key += (int)key[i];
     }
     list = this->lists[numeric_key % max_size];
-    for(Cell<HashPair<T>>* it = list->begin(); it != nullptr; it = it->get_next()){
+    for(List::Cell<HashPair<T>>* it = list->begin(); it != nullptr; it = it->get_next()){
         pair = it->get_object();
         if(pair->match(key)){
             return pair->value;
@@ -80,7 +80,7 @@ template<class T>
 void Hash<T>::each(void (*callback)(T*)){
     HashPair<T>* pair;
     for (int i = 0; i < this->max_size; i++){
-        for(Cell<HashPair<T>>* it = lists[i]->begin(); it != nullptr; it = it->get_next()){
+        for(List::Cell<HashPair<T>>* it = lists[i]->begin(); it != nullptr; it = it->get_next()){
             pair = it->get_object();
             callback(pair->value);
         }
