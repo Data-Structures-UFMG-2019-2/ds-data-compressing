@@ -31,7 +31,7 @@ run:
 	$(BUILD_PATH)/$(TARGET_NAME)
 
 mem:
-	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME) < tests/sample.in
+	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME) < ./tests/sample.in > ./output/mem.log
 
 test: $(TARGET_NAME)
 	@bash run_tests.sh $(BUILD_PATH)/$(TARGET_NAME) $(TMPOUT_NAME)
