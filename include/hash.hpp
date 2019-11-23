@@ -3,7 +3,7 @@
 
 #define MAX_STACK_SIZE 100000
 
-#include"./linked_list.hpp"
+#include"./list/linked_list.hpp"
 #include"./hash_pair.hpp"
 
 template<class T>

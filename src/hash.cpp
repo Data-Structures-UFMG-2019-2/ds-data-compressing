@@ -2,8 +2,8 @@
 #include<cstring>
 
 #include"../include/hash.hpp"
-#include"../include/linked_list.hpp"
-#include"../include/cell.hpp"
+#include"../include/list/linked_list.hpp"
+#include"../include/list/cell.hpp"
 #include "../include/index.hpp"
 #include"../include/hash_pair.hpp"
 

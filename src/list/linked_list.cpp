@@ -2,9 +2,9 @@
 #include<sstream>
 #include<iostream>
 
-#include"../include/linked_list.hpp"
-#include"../include/hash_pair.hpp"
-#include "../include/index.hpp"
+#include"../../include/list/linked_list.hpp"
+#include"../../include/hash_pair.hpp"
+#include "../../include/index.hpp"
 
 template<class T>
 List::LinkedList<T>::LinkedList(){

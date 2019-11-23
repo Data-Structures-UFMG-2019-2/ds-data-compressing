@@ -1,6 +1,6 @@
-#include "../include/cell.hpp"
-#include "../include/index.hpp"
-#include "../include/hash_pair.hpp"
+#include "../../include/list/cell.hpp"
+#include "../../include/index.hpp"
+#include "../../include/hash_pair.hpp"
 
 template<class T>
 List::Cell<T>::Cell(T* object){
