@@ -15,10 +15,12 @@ OBJECTS := $(patsubst $(SOURCE_PATH)/%,$(BUILD_PATH)/%,$(SOURCES:.$(SOURCE_EXT)=
 all: $(TARGET_NAME)
 
 $(BUILD_PATH)/%.o: $(SOURCE_PATH)/%.cpp $(LIB_PATH)/%.hpp
+	mkdir -p $(BUILD_PATH)
+	mkdir -p $(BUILD_PATH)/list
+	mkdir -p $(BUILD_PATH)/tree
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(TARGET_NAME): $(OBJECTS)
-	mkdir -p $(BUILD_PATH)
 	$(CC) $(CFLAGS) -o $(BUILD_PATH)/$(TARGET_NAME) ./main.cpp $(OBJECTS)
 
 clean:

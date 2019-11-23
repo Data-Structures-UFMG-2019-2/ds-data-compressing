@@ -19,7 +19,7 @@ namespace List {
             Cell* prev;
             void cascade_clear(int direction);
 
-            friend class List::LinkedList<T>;
+            friend class LinkedList<T>;
         public:
             Cell(T* object);
             ~Cell();
