@@ -3,7 +3,7 @@ STD=c++11
 CFLAGS=-Wall -Wextra -std=$(STD)
 
 TARGET_NAME=./tp3
-TMPOUT_NAME=tp3.testresult
+TMPOUT_NAME=tp3.out
 BUILD_PATH=./build
 SOURCE_PATH=./src
 LIB_PATH=./include
@@ -28,7 +28,7 @@ clean:
 	rm -rf $(BUILD_PATH)/*
 
 run:
-	$(BUILD_PATH)/$(TARGET_NAME) < tests/sample.in
+	$(BUILD_PATH)/$(TARGET_NAME)
 
 mem:
 	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME) < tests/sample.in

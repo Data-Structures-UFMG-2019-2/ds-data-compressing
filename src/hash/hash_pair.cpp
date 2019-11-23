@@ -22,7 +22,7 @@ HashPair<T>::~HashPair(){
 
 template<class T>
 bool HashPair<T>::match(char const* key){
-    for(int i = 0; this->key[i] != '\0' && key[i] != '\0'; i++){
+    for(int i = 0; this->key[i] != '\0' || key[i] != '\0'; i++){
         if(this->key[i] != key[i]){
             return false;
         }

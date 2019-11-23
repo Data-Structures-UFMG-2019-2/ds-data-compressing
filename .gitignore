@@ -33,7 +33,6 @@ build/*.app
 build/tp3
 
 # Output logs
-output/diff_logs*
-output/output_log
-output/tp3.testresult
+output/*.log
+output/tp3.out
 output/mem.log
