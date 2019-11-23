@@ -14,8 +14,8 @@ int main(){
         std::cin >> word;
         DataCompressor::indexes[word]->increment_occurrency();
     }
-    DataCompressor::build_tree();
     // DataCompressor::indexes.each(print_index);
+    DataCompressor::build_tree();
     while (scanf(" %c %s", &op, word) != EOF) {
         if (op == 'q'){
             std::cout << DataCompressor::indexes[word]->get_occurrency() << std::endl;
@@ -24,8 +24,9 @@ int main(){
             std::cout << DataCompressor::indexes[word]->get_code() << std::endl;
         }
     }
+    // DataCompressor::index_tree->each(free_index);
+    DataCompressor::index_tree->clear();
     delete DataCompressor::index_tree;
-    DataCompressor::indexes.clear();
 
     return 0;
 }

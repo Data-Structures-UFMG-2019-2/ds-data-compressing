@@ -21,6 +21,7 @@ namespace Tree{
             Node<T>* get_root(); // O(1)
             Node<T>* get_smallest(); // O(n)
             Node<T>* get_largest(); // O(n)
+            void each(void (*callback)(T*));
             void each(void (*callback)(T*, char*));
             void remove(Node<T>*); // O(1)
             void clear();

@@ -22,6 +22,7 @@ namespace List{
             T* get(int i);
             Cell<T>* begin();
             Cell<T>* get_cell(int i);
+            void each(void (*callback)(T*));
             T* remove(int i);
             void remove(Cell<T>* cell);
             void clear();

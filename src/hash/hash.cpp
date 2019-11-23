@@ -8,6 +8,11 @@
 #include"../../include/hash/hash_pair.hpp"
 
 template<class T>
+void free_pair(HashPair<T>* pair){
+    delete pair;
+}
+
+template<class T>
 Hash<T>::Hash(){
     this->lists = (List::LinkedList<HashPair<T>>**) malloc(this->max_size*sizeof(List::LinkedList<HashPair<T>>*));
     for(int i = 0; i < this->max_size; i++){
@@ -23,11 +28,11 @@ Hash<T>::Hash(int max_size){
     for(int i = 0; i < this->max_size; i++){
         this->lists[i] = new List::LinkedList<HashPair<T>>();
     }
-    
 }
 
 template<class T>
 Hash<T>::~Hash(){
+    this->clear();
     free(this->lists);
 }
 
@@ -49,8 +54,7 @@ List::LinkedList<HashPair<T>>** Hash<T>::get_lists(){
 template<class T>
 void Hash<T>::add(const char* key, T* value){
     int numeric_key = 0;
-    char* key_copy = this->copy_key(key);
-    HashPair<T>* pair = new HashPair<T>(key_copy, value);
+    HashPair<T>* pair = new HashPair<T>(key, value);
     List::LinkedList<HashPair<T>>* list;
 
     for(int i = 0; key[i] != '\0'; i++){
@@ -84,8 +88,8 @@ template<class T>
 T* Hash<T>::operator[](const char* key){
     T* value = this->get(key);
     if(value == nullptr){
-        char* key_copy = this->copy_key(key);
-        value = new T((char*) key_copy);
+        char* word = this->copy_key(key);
+        value = new T((char*) word);
         this->add(key, value);
     }
     return value;
@@ -105,15 +109,10 @@ void Hash<T>::each(void (*callback)(T*)){
 template<class T>
 void Hash<T>::clear(){
     for (int i = 0; i < this->max_size; i++){
-        if(this->lists[i]->length() > MAX_STACK_SIZE){
-            this->lists[i]->clear(ITERATIVE);
-            delete this->lists[i];
-        }
-        else{
-            this->lists[i]->clear(RECURSIVE);
-            delete this->lists[i];
-        }
+        this->lists[i]->each(free_pair);
+        delete this->lists[i];
     }
+    this->size = 0;
 }
 
 template<class T>

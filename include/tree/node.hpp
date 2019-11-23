@@ -27,6 +27,7 @@ namespace Tree {
             void set_right(Node<T>* right);
             int get_height();
             int get_size();
+            void propagate(void (*callback)(T*));
             void propagate(char* path, void (*callback)(T*, char*));
     };
 }

@@ -1,4 +1,5 @@
 #include<cstdlib>
+#include<cstring>
 
 #include"../../include/hash/hash_pair.hpp"
 #include "../../include/index.hpp"
@@ -11,13 +12,17 @@ HashPair<T>::HashPair(const char* key){
 
 template<class T>
 HashPair<T>::HashPair(const char* key, T* value){
-    this->key = key;
+    int key_size = strlen(key)+1;
+    this->key = (char*) malloc(key_size*sizeof(char));
+    memcpy((char*) this->key, key, key_size);
     this->value = value;
 }
 
 template<class T>
 HashPair<T>::~HashPair(){
-    free((char*)this->key);
+    if(this->key != nullptr){
+        free((char*)this->key);
+    }
 }
 
 template<class T>

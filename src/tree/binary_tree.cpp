@@ -82,6 +82,11 @@ Tree::Node<T>* Tree::BinaryTree<T>::get_largest(){
 }
 
 template<class T>
+void Tree::BinaryTree<T>::each(void (*callback)(T*)){
+    this->root->propagate(callback);
+}
+
+template<class T>
 void Tree::BinaryTree<T>::each(void (*callback)(T*, char*)){
     this->root->propagate((char*) "", callback);
 }
@@ -113,7 +118,10 @@ template<class T>
 void Tree::BinaryTree<T>::clear(){
     if(this->size > 0){
         this->root->cascade_clear();
+        delete this->root;
     }
+    this->size = 0;
+    this->height = 0;
 }
 
 template class Tree::BinaryTree<Index>;

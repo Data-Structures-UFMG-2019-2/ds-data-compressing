@@ -15,3 +15,4 @@ class DataCompressor{
 
 void print_index(Index* index);
 void delegate_code(Index* index, char* code);
+void free_index(Index* index);

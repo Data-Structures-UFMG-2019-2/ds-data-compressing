@@ -16,7 +16,7 @@ List::LinkedList<T>::LinkedList(){
 
 template<class T>
 List::LinkedList<T>::~LinkedList(){
-
+    this->clear(ITERATIVE);
 }
 
 template<class T>
@@ -164,6 +164,13 @@ List::Cell<T>* List::LinkedList<T>::from_front(int i){ // return i-th cell (star
 }
 
 template<class T>
+void List::LinkedList<T>::each(void (*callback)(T*)){
+    for(List::Cell<T>* it = this->begin(); it != nullptr; it = it->get_next()){
+        callback(it->object);
+    }
+}
+
+template<class T>
 T* List::LinkedList<T>::remove(int i){ // negative values for i remove itens from the back of the list
     List::Cell<T>* cell = nullptr;
     T* object = nullptr;
@@ -235,7 +242,7 @@ template<class T>
 void List::LinkedList<T>::clear(int strategy){
     if(strategy == ITERATIVE){
         while(this->size > 0){
-            delete this->remove(0);
+            this->remove(0);
         }
     }
     else if(strategy == RECURSIVE){

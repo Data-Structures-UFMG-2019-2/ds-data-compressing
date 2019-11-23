@@ -14,10 +14,6 @@ Tree::Node<T>::Node(T* object){
 
 template<class T>
 Tree::Node<T>::~Node(){
-    this->object = nullptr;
-    this->left = nullptr;
-    this->right = nullptr;
-    this->parent = nullptr;
 }
 
 template<class T>
@@ -78,6 +74,17 @@ int Tree::Node<T>::get_size(){
         right = this->right->get_size();
     }
     return left + right + 1;
+}
+
+template<class T>
+void Tree::Node<T>::propagate(void (*callback)(T*)){
+    callback(this->object);
+    if(this->left != nullptr){
+        this->left->propagate(callback);
+    }
+    if(this->right != nullptr){
+        this->right->propagate(callback);
+    }
 }
 
 template<class T>

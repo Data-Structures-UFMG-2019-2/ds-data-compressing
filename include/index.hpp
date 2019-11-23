@@ -6,7 +6,7 @@ class Index{
         char* word;
         int occurrency;
         int leaves;
-        char* code = (char*) "";
+        char* code = nullptr;
 
     public:
         Index(char* word);

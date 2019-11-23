@@ -39,6 +39,12 @@ void delegate_code(Index* index, char* code){
     index->set_code(code);
 }
 
+void free_index(Index* index){
+    if(index != nullptr){
+        delete index;
+    }
+}
+
 List::LinkedList<Tree::BinaryTree<Index>>* DataCompressor::get_forest(){
     List::LinkedList<Tree::BinaryTree<Index>>* forest = new List::LinkedList<Tree::BinaryTree<Index>>();
     int j = 0;
@@ -94,9 +100,12 @@ void DataCompressor::build_tree(){
         forest->remove(b);
         Tree::BinaryTree<Index>* new_tree = DataCompressor::join_trees(a, b);
         forest->add(new_tree);
+        delete a->get_object();
+        delete b->get_object();
+        delete a;
+        delete b;
     }
     DataCompressor::index_tree = forest->remove(0);
     DataCompressor::index_tree->each(delegate_code);
-    forest->clear();
     delete forest;
 }

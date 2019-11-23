@@ -53,7 +53,6 @@ void List::Cell<T>::cascade_clear(int direction){
             delete this->prev;
         }
     }
-    delete this->object;
 }
 
 template class List::Cell<HashPair<Index>>;

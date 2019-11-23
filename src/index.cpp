@@ -1,4 +1,5 @@
 #include<cstdlib>
+#include<iostream>
 
 #include"../include/index.hpp"
 
@@ -14,7 +15,12 @@ Index::Index(){
 }
 
 Index::~Index(){
-    free(this->word);
+    if(this->word != nullptr){
+        free(this->word);
+    }
+    if(this->code != nullptr){
+        free(this->code);
+    }
 }
 
 char* Index::get_word(){
