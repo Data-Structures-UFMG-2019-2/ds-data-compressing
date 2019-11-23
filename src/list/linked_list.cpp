@@ -3,7 +3,8 @@
 #include<iostream>
 
 #include"../../include/list/linked_list.hpp"
-#include"../../include/hash_pair.hpp"
+#include"../../include/hash/hash_pair.hpp"
+#include"../../include/tree/binary_tree.hpp"
 #include "../../include/index.hpp"
 
 template<class T>
@@ -196,6 +197,30 @@ T* List::LinkedList<T>::remove(int i){ // negative values for i remove itens fro
 }
 
 template<class T>
+void List::LinkedList<T>::remove(Cell<T>* cell){
+    if(this->size == 0){
+        return;
+    }
+    else if(this->size == 1){
+        this->first = nullptr;
+        this->last = nullptr;
+    }
+    else if(cell == this->first){ // case where the element is first on the list
+        cell->next->prev = nullptr;
+        this->first = cell->next;
+    }
+    else if(cell == this->last){ // case where the element is last on the list
+        cell->prev->next = nullptr;
+        this->last = cell->prev;
+    }
+    else{
+        cell->prev->next = cell->next;
+        cell->next->prev = cell->prev;
+    }
+    --this->size;
+}
+
+template<class T>
 void List::LinkedList<T>::clear(){
     if(this->size > 0){
         this->first->cascade_clear(FORWARD);
@@ -225,3 +250,4 @@ void List::LinkedList<T>::clear(int strategy){
 }
 
 template class List::LinkedList<HashPair<Index>>;
+template class List::LinkedList<Tree::BinaryTree<Index>>;

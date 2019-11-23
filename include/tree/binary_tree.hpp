@@ -14,10 +14,15 @@ namespace Tree{
         public:
             BinaryTree();
             ~BinaryTree();
-            int get_size();
-            int get_height();
-            void add(T* object, bool (*compare)(T*, T*));
-            Node<T>* get_root();
+            int get_size(); // O(1)
+            int get_height(); // O(1)
+            void add(T* object, bool (*compare)(T*, T*)); // O(n)
+            void set_root(Node<T>* root); // O(1)
+            Node<T>* get_root(); // O(1)
+            Node<T>* get_smallest(); // O(n)
+            Node<T>* get_largest(); // O(n)
+            void each(void (*callback)(T*, char*));
+            void remove(Node<T>*); // O(1)
             void clear();
     };
 }

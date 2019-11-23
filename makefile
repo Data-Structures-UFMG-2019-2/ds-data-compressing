@@ -18,6 +18,7 @@ $(BUILD_PATH)/%.o: $(SOURCE_PATH)/%.cpp $(LIB_PATH)/%.hpp
 	mkdir -p $(BUILD_PATH)
 	mkdir -p $(BUILD_PATH)/list
 	mkdir -p $(BUILD_PATH)/tree
+	mkdir -p $(BUILD_PATH)/hash
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(TARGET_NAME): $(OBJECTS)
@@ -27,10 +28,10 @@ clean:
 	rm -rf $(BUILD_PATH)/*
 
 run:
-	$(BUILD_PATH)/$(TARGET_NAME) < tests/part1/01.in
+	$(BUILD_PATH)/$(TARGET_NAME) < tests/sample.in
 
 mem:
-	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME)
+	valgrind --leak-check=full --show-leak-kinds=all $(BUILD_PATH)/$(TARGET_NAME) < tests/sample.in
 
 test: $(TARGET_NAME)
 	@bash run_tests.sh $(BUILD_PATH)/$(TARGET_NAME) $(TMPOUT_NAME)

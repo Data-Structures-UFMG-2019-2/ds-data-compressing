@@ -4,14 +4,17 @@
 
 Index::Index(char* word){
     this->word = word;
-    this->ocurrency = 0;
+    this->occurrency = 0;
+    this->leaves = 1;
 }
 
 Index::Index(){
-    this->ocurrency = 0;
+    this->occurrency = 0;
+    this->leaves = 1;
 }
 
 Index::~Index(){
+    free(this->word);
 }
 
 char* Index::get_word(){
@@ -22,18 +25,30 @@ char* Index::get_code(){
     return this->code;
 }
 
-int Index::get_ocurrency(){
-    return this->ocurrency;
+int Index::get_occurrency(){
+    return this->occurrency;
+}
+
+int Index::get_leaves(){
+    return this->leaves;
 }
 
 void Index::set_code(char* code){
     this->code = code;
 }
 
-void Index::increment_ocurrency(){
-    this->ocurrency++;
+void Index::set_leaves(int leaves){
+    this->leaves = leaves;
+}
+
+void Index::increment_occurrency(){
+    this->occurrency++;
+}
+
+void Index::set_occurrency(int occurrency){
+    this->occurrency = occurrency;
 }
 
 void Index::operator++(){
-    this->ocurrency++;
+    this->occurrency++;
 }

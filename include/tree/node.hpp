@@ -20,9 +20,14 @@ namespace Tree {
             ~Node();
             T* get_object();
             Node<T>* get_parent();
+            void set_parent(Node<T>* parent);
             Node<T>* get_left();
+            void set_left(Node<T>* left);
             Node<T>* get_right();
+            void set_right(Node<T>* right);
             int get_height();
+            int get_size();
+            void propagate(char* path, void (*callback)(T*, char*));
     };
 }
 

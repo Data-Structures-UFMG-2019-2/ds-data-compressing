@@ -1,5 +1,7 @@
-#include"../include/hash_pair.hpp"
-#include "../include/index.hpp"
+#include<cstdlib>
+
+#include"../../include/hash/hash_pair.hpp"
+#include "../../include/index.hpp"
 
 template<class T>
 HashPair<T>::HashPair(const char* key){
@@ -14,7 +16,9 @@ HashPair<T>::HashPair(const char* key, T* value){
 }
 
 template<class T>
-HashPair<T>::~HashPair(){}
+HashPair<T>::~HashPair(){
+    free((char*)this->key);
+}
 
 template<class T>
 bool HashPair<T>::match(char const* key){

@@ -1,31 +1,31 @@
 #include<iostream>
 #include <cstdio>
 
-#include"./include/hash.hpp"
+#include"./include/hash/hash.hpp"
 #include "./include/index.hpp"
-
-void print_index(Index* index){
-    std::cout << index->get_word() << std::endl;
-    std::cout << index->get_ocurrency() << std::endl;
-}
+#include "./include/data_compressor.hpp"
 
 int main(){
     int n;
     char op, word[64];
-    Hash<Index> indexes = Hash<Index>();
 
     scanf("%d", &n);
     for (int i = 0; i < n; ++i) {
         std::cin >> word;
-        indexes[word]->increment_ocurrency();
+        DataCompressor::indexes[word]->increment_occurrency();
     }
-    // indexes.each(print_index);
+    DataCompressor::build_tree();
+    // DataCompressor::indexes.each(print_index);
     while (scanf(" %c %s", &op, word) != EOF) {
         if (op == 'q'){
-            std::cout << indexes[word]->get_ocurrency() << std::endl;
+            std::cout << DataCompressor::indexes[word]->get_occurrency() << std::endl;
+        }
+        else if (op == 'c'){
+            std::cout << DataCompressor::indexes[word]->get_code() << std::endl;
         }
     }
-    indexes.clear();
+    delete DataCompressor::index_tree;
+    DataCompressor::indexes.clear();
 
     return 0;
 }

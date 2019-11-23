@@ -1,6 +1,7 @@
 #include "../../include/list/cell.hpp"
 #include "../../include/index.hpp"
-#include "../../include/hash_pair.hpp"
+#include "../../include/hash/hash_pair.hpp"
+#include "../../include/tree/binary_tree.hpp"
 
 template<class T>
 List::Cell<T>::Cell(T* object){
@@ -56,3 +57,4 @@ void List::Cell<T>::cascade_clear(int direction){
 }
 
 template class List::Cell<HashPair<Index>>;
+template class List::Cell<Tree::BinaryTree<Index>>;

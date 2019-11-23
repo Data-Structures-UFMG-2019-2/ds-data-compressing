@@ -1,11 +1,11 @@
 #include<cstdlib>
 #include<cstring>
 
-#include"../include/hash.hpp"
-#include"../include/list/linked_list.hpp"
-#include"../include/list/cell.hpp"
-#include "../include/index.hpp"
-#include"../include/hash_pair.hpp"
+#include"../../include/hash/hash.hpp"
+#include"../../include/list/linked_list.hpp"
+#include"../../include/list/cell.hpp"
+#include "../../include/index.hpp"
+#include"../../include/hash/hash_pair.hpp"
 
 template<class T>
 Hash<T>::Hash(){
@@ -29,6 +29,21 @@ Hash<T>::Hash(int max_size){
 template<class T>
 Hash<T>::~Hash(){
     free(this->lists);
+}
+
+template<class T>
+int Hash<T>::get_max_size(){
+    return this->max_size;
+}
+
+template<class T>
+int Hash<T>::get_size(){
+    return this->size;
+}
+
+template<class T>
+List::LinkedList<HashPair<T>>** Hash<T>::get_lists(){
+    return this->lists;
 }
 
 template<class T>

@@ -4,8 +4,9 @@
 class Index{
     private:
         char* word;
-        int ocurrency;
-        char* code;
+        int occurrency;
+        int leaves;
+        char* code = (char*) "";
 
     public:
         Index(char* word);
@@ -13,9 +14,12 @@ class Index{
         ~Index();
         char* get_word();
         char* get_code();
-        int get_ocurrency();
+        int get_occurrency();
+        int get_leaves();
         void set_code(char* code);
-        void increment_ocurrency();
+        void set_leaves(int leaves);
+        void increment_occurrency();
+        void set_occurrency(int occurrency);
         void operator++();
 };
 

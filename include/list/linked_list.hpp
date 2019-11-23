@@ -23,6 +23,7 @@ namespace List{
             Cell<T>* begin();
             Cell<T>* get_cell(int i);
             T* remove(int i);
+            void remove(Cell<T>* cell);
             void clear();
             void clear(int strategy);
     };
