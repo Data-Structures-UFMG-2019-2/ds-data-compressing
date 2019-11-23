@@ -12,7 +12,6 @@ class Hash{
         int max_size = 255;
         int size = 0;
         List::LinkedList<HashPair<T>>** lists;
-        char* copy_key(const char* key);
 
     public:
         Hash();

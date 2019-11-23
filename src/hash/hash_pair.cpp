@@ -6,7 +6,9 @@
 
 template<class T>
 HashPair<T>::HashPair(const char* key){
-    this->key = key;
+    int key_size = strlen(key)+1;
+    this->key = (char*) malloc(key_size*sizeof(char));
+    memcpy((char*) this->key, key, key_size);
     this->value = nullptr;
 }
 

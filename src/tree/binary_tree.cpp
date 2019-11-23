@@ -88,7 +88,9 @@ void Tree::BinaryTree<T>::each(void (*callback)(T*)){
 
 template<class T>
 void Tree::BinaryTree<T>::each(void (*callback)(T*, char*)){
-    this->root->propagate((char*) "", callback);
+    char* path = (char*) malloc(sizeof(char));
+    path[0] = '\0';
+    this->root->propagate(path, callback);
 }
 
 template<class T>
@@ -119,6 +121,7 @@ void Tree::BinaryTree<T>::clear(){
     if(this->size > 0){
         this->root->cascade_clear();
         delete this->root;
+        this->root = nullptr;
     }
     this->size = 0;
     this->height = 0;

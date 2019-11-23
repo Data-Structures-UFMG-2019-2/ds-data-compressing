@@ -88,8 +88,7 @@ template<class T>
 T* Hash<T>::operator[](const char* key){
     T* value = this->get(key);
     if(value == nullptr){
-        char* word = this->copy_key(key);
-        value = new T((char*) word);
+        value = new T((char*) key);
         this->add(key, value);
     }
     return value;
@@ -113,14 +112,6 @@ void Hash<T>::clear(){
         delete this->lists[i];
     }
     this->size = 0;
-}
-
-template<class T>
-char* Hash<T>::copy_key(const char* key){
-    int key_size = strlen(key)+1;
-    char* key_copy = (char*) malloc(key_size*sizeof(char));
-    memcpy(key_copy, key, key_size);
-    return key_copy;
 }
 
 template class Hash<Index>;

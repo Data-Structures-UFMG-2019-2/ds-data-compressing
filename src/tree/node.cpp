@@ -112,10 +112,12 @@ void Tree::Node<T>::cascade_clear(){
     if(this->left != nullptr){
         this->left->cascade_clear();
         delete this->left;
+        this->left = nullptr;
     }
     if(this->right != nullptr){
         this->right->cascade_clear();
         delete this->right;
+        this->right = nullptr;
     }
 }
 

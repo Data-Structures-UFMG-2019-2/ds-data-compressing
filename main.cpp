@@ -24,7 +24,7 @@ int main(){
             std::cout << DataCompressor::indexes[word]->get_code() << std::endl;
         }
     }
-    // DataCompressor::index_tree->each(free_index);
+    DataCompressor::index_tree->each(free_index);
     DataCompressor::index_tree->clear();
     delete DataCompressor::index_tree;
 

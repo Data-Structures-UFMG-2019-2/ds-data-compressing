@@ -1,10 +1,13 @@
 #include<cstdlib>
 #include<iostream>
+#include<cstring>
 
 #include"../include/index.hpp"
 
 Index::Index(char* word){
-    this->word = word;
+    int word_size = strlen(word)+1;
+    this->word = (char*) malloc(word_size*sizeof(char));
+    memcpy((char*) this->word, word, word_size);
     this->occurrency = 0;
     this->leaves = 1;
 }
